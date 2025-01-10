@@ -5,13 +5,7 @@ load_dotenv()
 
 api_key = os.getenv("KEY")
 genai.configure(api_key=api_key)
-# model = genai.GenerativeModel("gemini-1.5-flash")
-# response = model.generate_content("")
-# print(response.text)
-from moviepy import VideoFileClip
 
-# video = VideoFileClip("audio.mp4")
-# video.audio.write_audiofile("reel.mp3")
 
 myfile = genai.upload_file("reel.mp3")
 
@@ -24,20 +18,25 @@ Your task is to transcribe the audio, identify if it is about an event, place, o
 ### Guidelines for Relevant Content:  
 1. **Title**: Generate a concise and catchy title that summarizes the event.  
 2. **Description**: Write a short, engaging description (around 60 words) of the event, including key details and highlights.  
-3. **Category**: Classify the event into an appropriate category such as "Music", "Food", "Social Gathering", "Cafe Launch", etc.  
+3. **Category**: Create classification of the event, category putting into different categories  
 4. **Offers**: If the event includes any offers (e.g., discounts, complimentary items), list them.  
 
 ### JSON Output Format:  
 Ensure the output always follows this structure:  
-```json
+
 {
   "title": "Event title here",
   "description": "Engaging 60-word summary here",
   "category": "Event category here",
+  "sub_category": "Event sub-category here",
+  "tags": ["Tag 1", "Tag 2"],
   "offers": ["Offer 1", "Offer 2"]
 }
 
 """
 result = model.generate_content([myfile, var])
 
-print(result.text)
+import json
+json_data = json.dumps(result.text, indent=2)
+
+print(json_data)
