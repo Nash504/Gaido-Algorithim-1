@@ -39,8 +39,5 @@ Ensure the output always follows this structure:
 
 """
 result = model.generate_content([myfile, var])
-model = genai.GenerativeModel("gemini-1.5-flash")
-print(f"{result.text=}")
-response = model.generate_content(f"{result.text}clean it or just make look preetty")
 
-print(f"Clean data: {response.text}")
+print(result.text)
