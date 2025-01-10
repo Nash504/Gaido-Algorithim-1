@@ -36,7 +36,3 @@ Ensure the output always follows this structure:
 """
 result = model.generate_content([myfile, var])
 
-import json
-json_data = json.dumps(result.text, indent=2)
-
-print(json_data)
