@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 api_key = os.getenv("KEY")
-genai.configure(api_key="AIzaSyAzwS5iZh82AOIsZceXOMOsQsO3O9enXQc")
+genai.configure(api_key=api_key)
 
 
 myfile = genai.upload_file("reel.mp3")
