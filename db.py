@@ -1,6 +1,7 @@
 import os
 from supabase import create_client, Client
 from dotenv import load_dotenv
+from ai import gen
 
 load_dotenv()
 
@@ -11,6 +12,3 @@ supabase: Client = create_client(url, key)
 def get_events():
     response = supabase.table('events').select('*').execute()
     return response.data
-
-events = get_events()
-print(events)

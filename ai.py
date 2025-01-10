@@ -46,7 +46,6 @@ def gen():
       result = json.loads(clean_text)
       
       # Print the JSON object
-      print(json.dumps(result, indent=2))
       return result
   except json.JSONDecodeError as e:
       print("Error parsing JSON:", e)
