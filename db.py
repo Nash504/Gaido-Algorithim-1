@@ -1,16 +1,17 @@
 import os
-from supabase import create_client, Client
+import json
 from dotenv import load_dotenv
+from supabase import Client, create_client
 from ai import gen
 
 load_dotenv()
 
+# Supabase initialization
 url: str = os.environ.get("SUPABASE_URL")
 key: str = os.environ.get("SUPABASE_KEY")
 supabase: Client = create_client(url, key)
 
-result = gen()
-
+# Generate content and insert into Supabase
 def get_events():
     response = supabase.table('events').select('*').execute()
     return response.data
@@ -21,5 +22,12 @@ def insert_event(event):
         return response.error
     else:
         return response.data
-    
-insert_event(result)
+
+if __name__ == "__main__":
+
+    result = gen()
+    if result:
+        response = insert_event(result)
+        print(response)
+    else:
+        print("No valid event data to insert.")
