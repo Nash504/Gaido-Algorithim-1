@@ -5,10 +5,10 @@ import json
 load_dotenv()
 
 def gen():
-  link="https://www.instagram.com/reel/DENHFrCv_81/"
+  link="https://www.instagram.com/p/DDg-LBevuYq/"
   api_key = os.getenv("KEY")
   genai.configure(api_key=api_key)
-  myfile = genai.upload_file("reel.mp3")
+  myfile = genai.upload_file("deion.mp3")
   model = genai.GenerativeModel("gemini-1.5-flash")
   var = """
   You are transcribing and structuring audio content for a micro-content platform that delivers bite-sized updates on the latest events, social gatherings, new food places, cafes, and more. The platform is tailored for quick consumption, offering curated, 60-word summaries and visually engaging content for on-the-go users.  
@@ -18,7 +18,7 @@ def gen():
   ### Guidelines for Relevant Content:  
   1. **Title**: Generate a concise and catchy title that summarizes the event.  
   2. **Description**: Write a short, engaging description (around 60 words) of the event, including key details and highlights.  
-  3. **Category**: Create classification of the event, category putting into different categories (must all be in pure lowercase) 
+  3. **Category**: Create classification of the event, category putting into different categories (must all be in pure lowercase) (category is enum(‘event’, ‘place’, ‘restaurant’))
   4. **Offers**: If the event includes any offers (e.g., discounts, complimentary items), list them.  
 
   ### Python dictionary Output Format:  

@@ -18,11 +18,11 @@ def get_events():
 
 def insert_event(event):
     response = supabase.table('events').insert(event).execute()
-    if response.error:
-        return response.error
-    else:
+    if response:
         return response.data
-
+    else:
+        print("Error inserting event.")
+        
 if __name__ == "__main__":
 
     result = gen()
